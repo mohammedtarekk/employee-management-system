@@ -1,0 +1,14 @@
+table {    
+    vertical-align: middle;
+    text-align: center;
+}
+
+#main-container{margin: 0 2% 2% 2%}
+
+.form-group{margin: 3%}
+
+.form-group > label{margin: 1%}
+
+.addEmpButton{
+    margin-bottom: 1% 
+}

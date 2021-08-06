@@ -1,0 +1,9 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.page-title{
+    margin: 3%;
+    border: 1px solid #ccc;
+    padding: 1%;
+    background-color: #444;
+    color: #d6d3d3;
+}
