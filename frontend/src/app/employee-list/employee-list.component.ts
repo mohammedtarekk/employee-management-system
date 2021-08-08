@@ -53,8 +53,21 @@ export class EmployeeListComponent implements OnInit {
     ]*/
   }
 
+  public searchEmployeesByName(key: string) : void {
+    const results: Employee[] = [];
+    for(const employee of this.employees){
+      if(employee.name.toLowerCase().indexOf(key.toLowerCase()) !== -1)
+        results.push(employee);
+    }
+
+    this.employees = results;
+
+    if(results.length === 0 || !key)
+      this.getEmployees();
+  }
+
   public onAddEmployee(addForm: NgForm) : void {
-    this.employeeService.addEmployee(addForm.value).subscribe(
+    this.employeeService.addEmployee([addForm.value]).subscribe(
       (response: Employee) => {
         console.log(response);
         this.getEmployees();
@@ -63,7 +76,6 @@ export class EmployeeListComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-        addForm.reset();
       }
     );
   }

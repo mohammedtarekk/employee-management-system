@@ -1,6 +1,7 @@
 <div id="main-container">
    <div class="text-center">
       <button class = "btn btn-info addEmpButton" (click)="onOpenModal(defaultEmpObj, 'add')">Add New Employee</button>
+      <input class="search-box" type="text" (ngModelChange)="searchEmployeesByName(key.value)" #key="ngModel" ngModel placeholder="Search by name...">
    </div>
     <table class="table table-striped">
         <thead>
