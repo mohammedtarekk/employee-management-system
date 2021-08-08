@@ -23,15 +23,15 @@ export class EmployeeListComponent implements OnInit {
   }
 
   private getEmployees(){
-    /*this.employeeService.getEmployees().subscribe(
+    this.employeeService.getEmployees().subscribe(
       (response: Employee[]) => {
         this.employees = response;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
-    );*/
-    this.employees = [
+    );
+    /*this.employees = [
       {
         id: 5,
         name: "Mohamed",
@@ -50,7 +50,7 @@ export class EmployeeListComponent implements OnInit {
         imageURL: "www",
         empCode: "string"
       }
-    ]
+    ]*/
   }
 
   public onAddEmployee(addForm: NgForm) : void {
@@ -59,6 +59,33 @@ export class EmployeeListComponent implements OnInit {
         console.log(response);
         this.getEmployees();
         document.getElementById("add-employee-form")?.click();
+        addForm.reset();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        addForm.reset();
+      }
+    );
+  }
+
+  public onUpdateEmployee(employee: Employee) : void {
+    this.employeeService.updateEmployee(employee).subscribe(
+      (response: Employee) => {
+        console.log(response);
+        this.getEmployees();
+        document.getElementById("edit-employee-form")?.click();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public onDeleteEmployee(employeeId: number) : void {
+    this.employeeService.deleteEmployee(employeeId).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getEmployees();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -86,5 +113,4 @@ export class EmployeeListComponent implements OnInit {
     container?.appendChild(button);
     button.click();
   }
-
 }
